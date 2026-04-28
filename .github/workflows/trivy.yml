@@ -1,0 +1,23 @@
+name: Trivy Scan
+
+on:
+  push:
+
+jobs:
+  trivy-scan:
+    name: Trivy Vulnurability Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v6.0.2
+
+    # - name: Build your docker image
+
+    - name: Run Trivy Scan
+      uses: aquasecurity/trivy-action@v0.36.0
+      with:
+        image-ref: dakshsawhneyy/demo-service-a:latest
+        format: table
+        severity: 'CRITICAL'
+      
