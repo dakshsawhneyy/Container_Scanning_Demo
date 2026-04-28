@@ -1,0 +1,27 @@
+name: Grype Scan
+
+on:
+  push:
+
+jobs:
+  grype:
+    name: Grype vulnurability scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6.0.2
+
+    # install grype
+    - name: Install Grype
+      run: |
+        curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
+
+    - name: Update DB
+      run: grype db update
+
+    - name : Scan Image
+      run: |
+        grype dakshsawhneyy/demo-service-a:latest --fail-on medium -o table
+    
+        
