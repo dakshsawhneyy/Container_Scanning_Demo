@@ -19,5 +19,6 @@ jobs:
       with:
         image-ref: dakshsawhneyy/demo-service-a:latest
         format: table
+        exit-code: '1'
         severity: 'CRITICAL'
       
