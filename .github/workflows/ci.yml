@@ -1,1 +1,23 @@
+name: CI Pipeline
 
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: DevSecOps Integration
+
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v6.0.2
+
+      # Integrating SAST
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      
+          
